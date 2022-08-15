@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import User from '../models/User.js';
-import { attachCookiesToResponse } from '../utils/jwt.js';
+import { attachCookiesToResponse, createTokenUser } from '../utils/index.js';
 import { BadRequest, NotFound, Unauthentication } from '../error/index.js';
 
 const register = async (req, res) => {
@@ -8,7 +8,7 @@ const register = async (req, res) => {
 
   const user = await User.create({ name, email, password });
 
-  const tokenUser = { name, email, password, userId: user._id };
+  const tokenUser = createTokenUser(user);
 
   attachCookiesToResponse({ user: tokenUser, res });
 
@@ -32,7 +32,7 @@ const login = async (req, res) => {
     throw new Unauthentication(`Invalid Credential. Password is not correct!`);
   }
 
-  const tokenUser = { name: user.name, email, password, userId: user._id };
+  const tokenUser = createTokenUser(user);
 
   attachCookiesToResponse({ user: tokenUser, res });
 };

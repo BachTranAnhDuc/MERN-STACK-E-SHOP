@@ -26,7 +26,7 @@ import connectDB from './db/connectDB.js';
 // middleware
 import { ErrorHandle, NotFound } from './middleware/index.js';
 //
-if (process.env.NODE_ENV === 'dev') morgan('dev');
+if (process.env.NODE_ENV === 'dev') app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));

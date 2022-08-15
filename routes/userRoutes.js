@@ -15,7 +15,9 @@ import {
 
 const router = express.Router();
 
-router.route('/').get(getAllUsers);
+router
+  .route('/getAll')
+  .get(AuthenticationMiddleware, AuthorizedPermisson, getAllUsers);
 router.route('/updateUser').patch(updateUser);
 router.route('/updateUserPassword').patch(updateUserPassword);
 router.route('/showMe').get(AuthenticationMiddleware, showCurrentUser);

@@ -15,9 +15,9 @@ const AuthenticationMiddleware = async (req, res, next) => {
 
   const payload = isValidToken({ token });
 
-  const { name, email, password, userId } = payload;
+  const { name, email, password, userId, role } = payload;
 
-  req.user = { name, email, password, userId };
+  req.user = { name, email, password, userId, role };
 
   // console.log(payload);
 
@@ -26,14 +26,10 @@ const AuthenticationMiddleware = async (req, res, next) => {
 };
 
 const AuthorizedPermisson = async (req, res, next) => {
-  const { userId } = req.user;
+  const { role } = req.user;
 
-  const findUser = await User.findOne({ _id: userId });
-
-  if (findUser.role !== 'admin') {
-    throw new Unauthentication(
-      `You are ${findUser.role}, just only admin can request`
-    );
+  if (role !== 'admin') {
+    throw new Unauthentication(`You are ${role}, just only admin can request`);
   }
 
   next();
