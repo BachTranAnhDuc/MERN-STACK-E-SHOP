@@ -1,5 +1,7 @@
 import 'express-async-errors';
 
+import cors from 'cors';
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -28,6 +30,7 @@ import { ErrorHandle, NotFound } from './middleware/index.js';
 //
 if (process.env.NODE_ENV === 'dev') app.use(morgan('dev'));
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 

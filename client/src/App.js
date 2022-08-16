@@ -20,6 +20,10 @@ const App = () => {
 
           <Route path="*" element={<Error></Error>}></Route>
         </Route>
+
+        <Route path="/dashboard" element={<ShareLayout></ShareLayout>}>
+          <Route index element={<Dashboard></Dashboard>}></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

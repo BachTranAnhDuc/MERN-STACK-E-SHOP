@@ -2,7 +2,7 @@ import React from 'react';
 
 const Dashboard = () => {
   return (
-    <section>
+    <section className="section-dashboard">
       <h1>DashBoard</h1>
     </section>
   );

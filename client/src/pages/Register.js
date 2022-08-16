@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { main, logo1, logo2, logo3, logos, login } from '../assets/images';
 import { useGlobalContext } from '../context/appContext';
 import { Spinner, Alert } from '../components';
+import { loginImg } from '../assets/images';
+import { useNavigate } from 'react-router-dom';
 
 const defaultForm = {
   name: '',
@@ -11,7 +12,9 @@ const defaultForm = {
 };
 
 const Register = () => {
-  const { isLoading, showAlert } = useGlobalContext();
+  const navigate = useNavigate();
+  const { isLoading, showAlert, login, alertType, alertText, register } =
+    useGlobalContext();
   const [values, setValues] = useState(defaultForm);
 
   const handleChange = (e) => {
@@ -23,20 +26,37 @@ const Register = () => {
     setValues({ ...values, isMember: !values.isMember });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('submit');
+
+    if (values.isMember) {
+      login({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      });
+      navigate('/dashboard');
+    } else {
+      register({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      });
+    }
+  };
   if (isLoading) {
     return <Spinner></Spinner>;
   }
   return (
     <section className="section-register">
-      <img src={login} alt="login" className="form-login__img" />
-      <form className="form-login">
+      <img src={loginImg} alt="login" className="form-login__img" />
+      <form className="form-login" onSubmit={handleSubmit}>
         <h2 className="heading__secondary form__heading">{`${
           values.isMember ? '🎈Login🎈' : '🎈Register🎈'
         }`}</h2>
 
-        {showAlert && (
-          <Alert type={'danger'} text={'Something went wrong!'}></Alert>
-        )}
+        {showAlert && <Alert type={alertType} text={alertText}></Alert>}
 
         {values.isMember || (
           <div className="form-login__control">
