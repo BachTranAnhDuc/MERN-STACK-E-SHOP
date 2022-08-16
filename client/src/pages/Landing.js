@@ -1,7 +1,15 @@
 import React from 'react';
 import { main, logo1, logo2, logo3, logos } from '../assets/images';
+import { useGlobalContext } from '../context/appContext';
+import { Spinner } from '../components';
 
 const Landing = () => {
+  const { isLoading } = useGlobalContext();
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
+
   return (
     <div className="header">
       <h1 className="header__heading heading__primary">
