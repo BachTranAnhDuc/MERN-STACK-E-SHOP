@@ -23,6 +23,9 @@
   --color-primary-light-8: #d2f4ea;
   --color-primary-light-9: #e9faf5;
 
+  --color-primary-opacity: rgba(32, 201, 150, 0.5);
+  --color-primary-3-opacity: rgba(22, 141, 105, 0.4);
+
   --color-grey-light-1: #474747;
   --color-grey-light-2: #5c5c5c;
   --color-grey-light-3: #707070;
@@ -47,7 +50,7 @@
   --color-danger: #f03e3e;
   --color-warm: #f59f00;
   --color-black: #000000;
-  --color-black: #ffffff;
+  --color-white: #ffffff;
 }
 
 /* GLOBAL SETUP */
@@ -68,7 +71,244 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 1.6rem;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 300;
   color: var(--color-grey);
+
+  background-color: var(--color-white);
+  /* background-color: var(--color-grey-light-9); */
+}
+
+.container {
+  display: grid;
+
+  /* grid-template-rows: 15vh 1fr; */
+  grid-template-rows: 15vh 85vh;
+
+  /* align-content: center;
+  align-items: center; */
+}
+
+/* Text */
+.heading__primary {
+  font-size: 4.4rem;
+  font-weight: 700;
+}
+
+/* Nav */
+.nav {
+  /* height: 15vh; */
+  padding: 0 18rem;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+
+  align-items: center;
+
+  /* background-color: orange; */
+}
+
+.nav__logo {
+  height: 8rem;
+}
+
+/* Header */
+.header {
+  align-self: center;
+  /* height: 85vh; */
+
+  padding: 1.6rem 18rem;
+
+  display: grid;
+
+  gap: 0 2.4rem;
+
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, min-content);
+}
+
+.header__container {
+}
+
+.header__img {
+  width: 25vw;
+  /* 
+  grid-column: 2 / 3;
+  grid-row: 1 / 2; */
+
+  grid-area: 1 / 2 / 4 / 3;
+
+  align-self: center;
+  justify-self: center;
+}
+
+.header__container-text {
+  /* background-image: url('./assets/images/wave-haikei.svg'); */
+}
+
+.header__text {
+  color: var(--color-grey-light-2);
+}
+
+.header__heading {
+  color: var(--color-grey);
+  align-self: start;
+
+  /* position: relative; */
+}
+
+.header__span-heading {
+  position: relative;
+  padding: 0.4rem 1.2rem;
+
+  font-size: 4.8rem;
+}
+
+.header__span-heading::after {
+  /* transform: skew(-0.06turn, 18deg); */
+  background-color: var(--color-primary-opacity);
+  position: absolute;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 25%,
+    0% 25%,
+    0% 50%,
+    100% 50%,
+    100% 75%,
+    0% 75%,
+    0% 100%,
+    100% 100%,
+    100% 0%,
+    75% 0%,
+    75% 100%,
+    50% 100%,
+    50% 0%,
+    25% 0%,
+    25% 100%,
+    0% 100%
+  );
+
+  z-index: -1;
+}
+
+.header__logos {
+  margin-top: 4rem;
+
+  justify-self: end;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, min-content);
+
+  align-items: end;
+  justify-items: start;
+
+  gap: 1.2rem;
+}
+
+.header__logo {
+  height: 8rem;
+
+  opacity: 0.6;
+}
+
+/* Register */
+
+.section-register {
+  /* background-color: orange; */
+  padding: 8rem 14rem;
+
+  display: grid;
+  /* grid-template-columns: repeat(2, 1fr); */
+  grid-template-columns: 2fr 1.5fr 0.5fr;
+  align-items: center;
+}
+
+.form-login {
+  background-color: var(--color-grey-light-9);
+  padding: 6rem 8rem;
+
+  display: grid;
+
+  gap: 1.6rem;
+
+  align-items: center;
+}
+
+.form-login__img {
+  height: 40vh;
+}
+
+.form-login__control {
+  display: grid;
+  gap: 8px;
+}
+
+.form-login__text {
+  margin-top: 1.6rem;
+}
+
+.label-login {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.input-login {
+  border: none;
+  padding: 1.2rem 1.6rem;
+  /* max-width: 20rem; */
+}
+
+.input-login:focus {
+  outline: none;
+  border: 3px solid var(--color-grey-dark-2);
+}
+
+/* btn */
+
+.btn {
+  border: none;
+  padding: 1.6rem 3.2rem;
+  background-color: var(--color-primary);
+  color: var(--color-grey-light-9);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 1.8rem;
+
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--color-primary-dark-2);
+}
+
+.btn--login {
+  justify-self: end;
+  text-decoration: none;
+}
+
+.btn-submitForm {
+  /* padding: 0.8rem 1.6rem; */
+  margin-top: 3.2rem;
+}
+
+.btn-link {
+  border: none;
+  text-decoration: none;
+  background-color: inherit;
+  font-size: 1.6rem;
+
+  cursor: pointer;
+}
+
+.btn-link:hover {
+  color: var(--color-primary-dark-4);
 }

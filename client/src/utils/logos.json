@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Unity",
+    "image": "../assets/images/logo-Unity-New-2021.svg"
+  },
+  {
+    "name": "XBox",
+    "image": "../assets/images/logo-XBox-Black.svg"
+  },
+  {
+    "name": "Zenlink",
+    "image": "../assets/images/logo-Zenlink.svg"
+  }
+]
